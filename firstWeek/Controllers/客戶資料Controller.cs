@@ -14,15 +14,22 @@ namespace firstWeek.Controllers
     {
         private 客戶資料Entities db = new 客戶資料Entities();
 
+        //TODO: 不同 controller 的 webTitle 要不一樣  但是 要在每個 action 裏面都加一句 ViewBag.message = webTitle 這樣很容易漏掉沒加，不知道有沒有更有效的寫法 
+
+        string webTitle = "ASP.NET MVC 5 開發實戰 (台北) (2015/4/18 ~ 5/10)";
         // GET: 客戶資料
         public ActionResult Index()
         {
+            ViewBag.message = webTitle;
+            
             return View(db.客戶資料.ToList());
         }
 
         // GET: 客戶資料/Details/5
         public ActionResult Details(int? id)
         {
+            ViewBag.message = webTitle; 
+
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -38,6 +45,8 @@ namespace firstWeek.Controllers
         // GET: 客戶資料/Create
         public ActionResult Create()
         {
+            ViewBag.message = webTitle; 
+
             return View();
         }
 
@@ -48,6 +57,8 @@ namespace firstWeek.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "Id,客戶名稱,統一編號,電話,傳真,地址,Email")] 客戶資料 客戶資料)
         {
+            ViewBag.message = webTitle; 
+
             if (ModelState.IsValid)
             {
                 db.客戶資料.Add(客戶資料);
@@ -61,6 +72,8 @@ namespace firstWeek.Controllers
         // GET: 客戶資料/Edit/5
         public ActionResult Edit(int? id)
         {
+            ViewBag.message = webTitle; 
+
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -80,6 +93,8 @@ namespace firstWeek.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "Id,客戶名稱,統一編號,電話,傳真,地址,Email")] 客戶資料 客戶資料)
         {
+            ViewBag.message = webTitle; 
+
             if (ModelState.IsValid)
             {
                 db.Entry(客戶資料).State = EntityState.Modified;
@@ -92,6 +107,8 @@ namespace firstWeek.Controllers
         // GET: 客戶資料/Delete/5
         public ActionResult Delete(int? id)
         {
+            ViewBag.message = webTitle; 
+
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -109,6 +126,8 @@ namespace firstWeek.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
+            ViewBag.message = webTitle; 
+
             客戶資料 客戶資料 = db.客戶資料.Find(id);
             db.客戶資料.Remove(客戶資料);
             db.SaveChanges();
