@@ -159,5 +159,16 @@ namespace firstWeek.Controllers
             return View(query);
         }
 
+        //用  view 做報表
+        public ActionResult Report_view()
+        {
+            ViewBag.message = webTitle;
+
+            return View(db.View_客戶報表.ToList());
+            
+        }
+
+
+
     }
 }

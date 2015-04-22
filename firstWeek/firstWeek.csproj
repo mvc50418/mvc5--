@@ -190,6 +190,9 @@
     <Compile Include="Models\sysdiagrams.cs">
       <DependentUpon>Customer.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\View_客戶報表.cs">
+      <DependentUpon>Customer.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\客戶報表Viewmodel.cs" />
     <Compile Include="Models\客戶聯絡人.cs">
       <DependentUpon>Customer.tt</DependentUpon>
@@ -210,6 +213,7 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="msSql\dbo.View_客戶報表.sql" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <EntityDeploy Include="Models\Customer.edmx">
@@ -292,6 +296,7 @@
     <Content Include="Views\客戶銀行資訊\Edit.cshtml" />
     <Content Include="Views\客戶銀行資訊\Index.cshtml" />
     <Content Include="Views\客戶資料\Report.cshtml" />
+    <Content Include="Views\客戶資料\Report_view.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
