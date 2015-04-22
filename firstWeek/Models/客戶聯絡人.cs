@@ -11,6 +11,7 @@ namespace firstWeek.Models
 {
     using System;
     using System.Collections.Generic;
+    using System.ComponentModel.DataAnnotations;
     
     public partial class 客戶聯絡人
     {
@@ -19,6 +20,7 @@ namespace firstWeek.Models
         public string 職稱 { get; set; }
         public string 姓名 { get; set; }
         public string Email { get; set; }
+        [RegularExpression(@"\d{4}-\d{6}", ErrorMessage = "請輸入格式正確的手機號碼。例：0911-111111 ")]
         public string 手機 { get; set; }
         public string 電話 { get; set; }
     
