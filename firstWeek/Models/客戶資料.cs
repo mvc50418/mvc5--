@@ -11,7 +11,8 @@ namespace firstWeek.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
     public partial class 客戶資料
     {
         public 客戶資料()
@@ -21,12 +22,15 @@ namespace firstWeek.Models
         }
     
         public int Id { get; set; }
+        [Required(ErrorMessage = "客戶名稱不能空白")]
         public string 客戶名稱 { get; set; }
         public string 統一編號 { get; set; }
         public string 電話 { get; set; }
         public string 傳真 { get; set; }
         public string 地址 { get; set; }
-        public string Email { get; set; }
+
+        [RegularExpression(@"^([0-9a-zA-Z]([\+\-_\.][0-9a-zA-Z]+)*)+@(([0-9a-zA-Z][-\w]*[0-9a-zA-Z]*\.)+[a-zA-Z0-9]{2,3})$", ErrorMessage = "請輸入格式正確的Email。例：service@miniasp.com ")]
+                public string Email { get; set; }
     
         public virtual ICollection<客戶銀行資訊> 客戶銀行資訊 { get; set; }
         public virtual ICollection<客戶聯絡人> 客戶聯絡人 { get; set; }
