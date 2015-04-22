@@ -13,7 +13,7 @@ namespace firstWeek.Controllers
     public class 客戶資料Controller : Controller
     {
         private 客戶資料Entities db = new 客戶資料Entities();
-
+        
         //TODO: 不同 controller 的 webTitle 要不一樣  但是 要在每個 action 裏面都加一句 ViewBag.message = webTitle 這樣很容易漏掉沒加，不知道有沒有更有效的寫法 
 
         string webTitle = "ASP.NET MVC 5 開發實戰 (台北) (2015/4/18 ~ 5/10)";
@@ -24,7 +24,7 @@ namespace firstWeek.Controllers
             
             return View(db.客戶資料.ToList());
         }
-
+       
         // GET: 客戶資料/Details/5
         public ActionResult Details(int? id)
         {
@@ -142,5 +142,22 @@ namespace firstWeek.Controllers
             }
             base.Dispose(disposing);
         }
+
+        //實作一份簡易報表，顯示欄位有「客戶名稱、聯絡人數量、銀行帳戶數量」共三個欄位，用一個表格呈現報表即可。
+
+        public ActionResult Report()
+        {
+            ViewBag.message = webTitle;
+            var query = db.客戶資料.ToList()
+                .Select(c => new 客戶報表Viewmodel   //myViewmodel
+                {
+                    客戶名稱 = c.客戶名稱,
+                    銀行數量 = c.客戶銀行資訊.Count,
+                    聯絡人數量 = c.客戶聯絡人.Count
+                });
+
+            return View(query);
+        }
+
     }
 }
