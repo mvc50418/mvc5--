@@ -22,7 +22,7 @@ namespace firstWeek.Controllers
         {
             ViewBag.message = webTitle;
             
-            return View(db.客戶資料.ToList());
+            return View(db.客戶資料.Where(D=>D.是否已刪除==true).ToList());
         }
        
         // GET: 客戶資料/Details/5
@@ -61,6 +61,7 @@ namespace firstWeek.Controllers
 
             if (ModelState.IsValid)
             {
+                客戶資料.是否已刪除 = true;
                 db.客戶資料.Add(客戶資料);
                 db.SaveChanges();
                 return RedirectToAction("Index");
@@ -113,8 +114,8 @@ namespace firstWeek.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            客戶資料 客戶資料 = db.客戶資料.Find(id);
-            if (客戶資料 == null)
+            var 客戶資料 = db.客戶資料.Find(id);
+            if (客戶資料 == null || 客戶資料.是否已刪除 == false)
             {
                 return HttpNotFound();
             }
@@ -128,8 +129,13 @@ namespace firstWeek.Controllers
         {
             ViewBag.message = webTitle; 
 
-            客戶資料 客戶資料 = db.客戶資料.Find(id);
-            db.客戶資料.Remove(客戶資料);
+            var  客戶資料 = db.客戶資料.Find(id);
+            if (客戶資料!=null)
+            {
+                客戶資料.是否已刪除 = false;
+            }
+            //db.客戶資料.FirstOrDefault().是否已刪除 = true;
+            //db.客戶資料.Remove(客戶資料);
             db.SaveChanges();
             return RedirectToAction("Index");
         }

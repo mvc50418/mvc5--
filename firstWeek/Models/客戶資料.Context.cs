@@ -13,10 +13,10 @@ namespace firstWeek.Models
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class 客戶資料Entities : DbContext
+    public partial class 客戶資料2Entities : DbContext
     {
-        public 客戶資料Entities()
-            : base("name=客戶資料Entities")
+        public 客戶資料2Entities()
+            : base("name=客戶資料2Entities")
         {
         }
     
@@ -25,9 +25,9 @@ namespace firstWeek.Models
             throw new UnintentionalCodeFirstException();
         }
     
+        public virtual DbSet<View_客戶報表> View_客戶報表 { get; set; }
         public virtual DbSet<客戶資料> 客戶資料 { get; set; }
         public virtual DbSet<客戶銀行資訊> 客戶銀行資訊 { get; set; }
         public virtual DbSet<客戶聯絡人> 客戶聯絡人 { get; set; }
-        public virtual DbSet<View_客戶報表> View_客戶報表 { get; set; }
     }
 }
